@@ -1,0 +1,13 @@
+clear;
+f = imread('model-t.png');
+kx = 1/8 * [1 0 -1;2 0 -2;1 0 -1];
+gx = imfilter(double(f),kx);
+ky = transpose(kx);
+gy = imfilter(double(f),ky);
+figure, imshow(gx, []), title('Visualization of gradient X');
+figure, imshow(gy, []), title('Visualization of gradient Y');
+figure, imshow(abs(gx)+abs(gy),[]), title('Magnitude');
+figure, imshow((abs(gx)+abs(gy))>10,[]), title('Magnitude with threshold 10');
+figure, imshow((abs(gx)+abs(gy))>10,[]), title('Magnitude with threshold 50');
+figure, imshow((abs(gx)+abs(gy))>70,[]), title('Magnitude with threshold 90');
+figure, imshow(atan2(gy,gx), []),  title('Gradient Direction'), colormap jet;
